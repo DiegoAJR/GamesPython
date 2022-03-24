@@ -153,17 +153,27 @@ def move():
     goto(pacman.x + 10, pacman.y + 10)
     dot(20, 'yellow')
 
-    for point, course in ghosts:
+    for point, course in ghosts:        
         if valid(point + course):
             point.move(course)
         else:
-            options = [
-                vector(5, 0),
-                vector(-5, 0),
-                vector(0, 5),
-                vector(0, -5),
-            ]
-            plan = choice(options)
+            if(point.x < pacman.x and valid(point + vector(5,0))):
+                plan = vector(5,0)
+            elif(point.x > pacman.x and valid(point + vector(-5,0))):
+                plan = vector(-5,0)
+            elif(pacman.y < point.y and valid(point + vector(0,-5))):
+                plan = vector(0,-5)
+            elif(pacman.y > point.y and valid(point + vector(0,5))):
+                plan = vector(0,5)
+            else:
+                options = [
+                    vector(5,0),
+                    vector(-5,0),
+                    vector(0,5),
+                    vector(0,-5)
+                ]
+                plan = choice(options)
+
             course.x = plan.x
             course.y = plan.y
 
