@@ -69,10 +69,18 @@ def move():
             targets.append(target)
 
     draw()
+    deletes = []
+    for i in range(len(targets)):
+    #for target in targets:
+        if not inside(targets[i]):
+            deletes.append(i)
 
-    for target in targets:
-        if not inside(target):
-            return
+    for idx in deletes:
+        print("Here I am...")
+        targets.append(vector(200, randrange(-150, 150)))
+        targets.pop(idx)
+    
+    deletes = []
 
     ontimer(move, 50)
 
