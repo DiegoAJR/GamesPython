@@ -58,6 +58,9 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+    
+    if True not in hide:
+        print("The game is over, your bravery is unmatched.")
 
 def draw():
     """Function that draws the background and all the tiles in the game."""
