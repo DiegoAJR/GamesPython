@@ -41,6 +41,7 @@ def move():
 
     snake.append(head)
 
+
     if head == food:
         print('Snake:', len(snake))
         food.x = randrange(-15, 15) * 10
@@ -54,6 +55,18 @@ def move():
         square(body.x, body.y, 9, 'black')
 
     square(food.x, food.y, 9, 'green')
+
+    movesFood = [vector(0,10),vector(0,-10),vector(10,0),vector(-10,0)]
+    movedFood = food.copy()
+    movedFood.move(movesFood[randrange(0,3)])
+
+    while not inside(movedFood):
+        movedFood = food.copy()
+        movedFood.move(movesFood[randrange(0,3)])
+
+    food.x = movedFood.x
+    food.y = movedFood.y
+
     update()
     ontimer(move, 100)
 
