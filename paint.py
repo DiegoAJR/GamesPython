@@ -1,12 +1,12 @@
-"""Paint, for drawing shapes.
+"""
+Paint Game
 
-Exercises
+Python file that emulates a paint game. Game to draw shapes and lines
 
-1. Add a color.
-2. Complete circle.
-3. Complete rectangle.
-4. Complete triangle.
-5. Add width parameter.
+Modified by: 
+Diego Alejandro Juárez Ruiz
+Luis Enrique Zamarripa Marín
+
 """
 
 from turtle import *

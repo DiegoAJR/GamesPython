@@ -1,12 +1,12 @@
-"""Memory, puzzle game of number pairs.
+"""
+Memory Game
 
-Exercises:
+Puzzle grid to have fun finding and remembering number pairs.
 
-1. Count and print how many taps occur.
-2. Decrease the number of tiles to a 4x4 grid.
-3. Detect when all tiles are revealed.
-4. Center single-digit tile.
-5. Use letters instead of tiles.
+Modified by: 
+Diego Alejandro Juárez Ruiz
+Luis Enrique Zamarripa Marín
+
 """
 
 from random import *
@@ -60,22 +60,22 @@ def tap(x, y):
         state['mark'] = None
 
 def draw():
-    """Draw image and tiles."""
-    clear()
+    """Function that draws the background and all the tiles in the game."""
+    clear() #Every frame the grid is updated
     goto(0, 0)
-    shape(car)
+    shape(car) # Add the image as a background
     stamp()
 
     for count in range(64):
-        if hide[count]:
-            x, y = xy(count)
-            square(x, y)
+        if hide[count]: # For every squere in the gird
+            x, y = xy(count) #Take every coordinates to squere tiles
+            square(x, y) # Make the white squere
 
-    mark = state['mark']
+    mark = state['mark'] #Take the status of a tile
 
-    if mark is not None and hide[mark]:
-        x, y = xy(mark)
-        up()
+    if mark is not None and hide[mark]: 
+        x, y = xy(mark) # Take the coordinates of the selecction 
+        up() 
 
         if(tiles[mark] < 10): #If mark has 1 number to center add to x 15
             goto(x + 15, y)
@@ -83,17 +83,17 @@ def draw():
             goto(x + 3, y)
 
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        write(tiles[mark], font=('Arial', 30, 'normal')) # Display the mark number of the selecction
 
-    update()
+    update() 
     ontimer(draw, 100)
 
 
-shuffle(tiles)
-setup(420, 420, 370, 0)
-addshape(car)
-hideturtle()
-tracer(False)
+shuffle(tiles) # Shuffle the number in the tiles
+setup(420, 420, 370, 0) # Open the game window
+addshape(car) # Add the background 
+hideturtle() 
+tracer(False) 
 onscreenclick(tap)
 draw()
 done()
