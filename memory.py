@@ -18,6 +18,8 @@ car = path('car.gif')
 tiles = list(range(32)) * 2
 state = {'mark': None}
 hide = [True] * 64
+writer = Turtle(visible=False)
+taps = {'Taps': 0} # Counter of number of taps
 
 
 def square(x, y):
@@ -47,6 +49,8 @@ def tap(x, y):
     """Update mark and hidden tiles based on tap."""
     spot = index(x, y)
     mark = state['mark']
+    taps['Taps'] += 1  # Add 1 tap
+    print("Number of taps: "+ str(taps['Taps'])) # Print in console number of taps
 
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
@@ -54,7 +58,6 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
-
 
 def draw():
     """Draw image and tiles."""
@@ -73,7 +76,12 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+
+        if(tiles[mark] < 10): #If mark has 1 number to center add to x 15
+            goto(x + 15, y)
+        else: #If mark has 2 number to center add to x 3
+            goto(x + 3, y)
+
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
 
