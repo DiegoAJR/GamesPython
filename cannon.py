@@ -75,7 +75,7 @@ def move():
     for i in range(len(targets)):
     #for target in targets:
         if not inside(targets[i]):
-            deletes.append(i) #IF targets are not in the boundries, append it to list of delete
+            deletes.append(i) #If targets are not in the boundries, append it to list of delete
 
     for idx in deletes: # For every delete targets create a new target in start boundries
         targets.append(vector(200, randrange(-150, 150)))
@@ -83,7 +83,7 @@ def move():
     
     deletes = []
 
-    ontimer(move, 50)
+    ontimer(move, 20)
 
 
 setup(420, 420, 370, 0) # open window game
