@@ -138,27 +138,25 @@ def move():
     goto(pacman.x + 10, pacman.y + 10)
     dot(20, 'yellow')
 
-    for point, course in ghosts:        
-        if valid(point + course):
-            point.move(course)
-        else:
-            if(point.x < pacman.x and valid(point + vector(10,0))):
-                plan = vector(10,0)
-            elif(point.x > pacman.x and valid(point + vector(-10,0))):
-                plan = vector(-10,0)
-            elif(pacman.y < point.y and valid(point + vector(0,-10))):
-                plan = vector(0,-10)
-            elif(pacman.y > point.y and valid(point + vector(0,10))):
-                plan = vector(0,10)
-            else:
-                options = [
-                    vector(5,0),
-                    vector(-5,0),
-                    vector(0,5),
-                    vector(0,-5)
-                ]
-                plan = choice(options)
-
+    for point, course in ghosts: # Movement for every ghost
+        #Check position of pacman and valid movements to get closer
+        if(point.x < pacman.x and valid(point + vector(10,0))): 
+            point.move(vector(10,0))
+        elif(pacman.y < point.y and valid(point + vector(0,-10))):
+            point.move(vector(0,-10))
+        elif(point.x > pacman.x and valid(point + vector(-10,0))):
+            point.move(vector(-10,0))
+        elif(pacman.y > point.y and valid(point + vector(0,10))):
+            point.move(vector(0,10))
+        else: #If none of movements are valid, move randomly
+            options = [
+                vector(5,0),
+                vector(-5,0),
+                vector(0,5),
+                vector(0,-5)
+            ] #Options of movements
+            plan = choice(options)
+            # Change course of ghosts
             course.x = plan.x
             course.y = plan.y
 
