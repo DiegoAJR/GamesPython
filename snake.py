@@ -27,7 +27,7 @@ def change(x, y):
 
 
 def inside(head):
-    """Funciton that return True if the given coordinates are in the boundries of the map"""
+    """Funciton that returns True if the given coordinates are in the boundaries of the map"""
     return -200 < head.x < 190 and -200 < head.y < 190
 
 
@@ -37,7 +37,7 @@ def move():
     head.move(aim) # Move snake to the next positiion in the direction
 
     if not inside(head) or head in snake: #If the snake is out of boundries or in the same position of a snake
-        # draw red squere and game over
+        # draw red square and game over
         square(head.x, head.y, 9, 'red')
         update()
         return
@@ -54,10 +54,10 @@ def move():
 
     clear()
 
-    for body in snake: # Draw every squere of the snake
+    for body in snake: # Draw every square of the snake
         square(body.x, body.y, 9, snakeColor)
 
-    square(food.x, food.y, 9, foodColor) # Draw squere of the food
+    square(food.x, food.y, 9, foodColor) # Draw square of the food
 
     movesFood = [vector(0,10),vector(0,-10),vector(10,0),vector(-10,0)] #Possible moves of the food
     movedFood = food.copy() # Temporary food

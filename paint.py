@@ -1,7 +1,7 @@
 """
 Paint Game
 
-Python file that emulates a paint game. Game to draw shapes and lines
+Python file that emulates a paint game. Game to draw shapes and lines.
 
 Modified by: 
 Diego Alejandro Juárez Ruiz
@@ -25,12 +25,14 @@ def line(start, end):
 
 def square(start, end):
     """Draw square by selecting two of the corners"""
+
+    # Positions the turtle at the beginning of the square
     up()
     goto(start.x, start.y)
     down()
     begin_fill()
 
-    # For loop that makes the remaining 3 lines and closes off the square
+    # For loop that makes the 4 lines of the square
     for count in range(4):
         forward(end.x - start.x)
         left(90)
@@ -92,7 +94,7 @@ def tap(x, y):
 
 
 def store(key, value):
-    """Store value in state at key."""
+    """Stores the drawing mode in the state dictionary."""
     state[key] = value
 
 
@@ -102,7 +104,7 @@ onscreenclick(tap)
 listen()
 onkey(undo, 'u')
 
-"""Change colors by pressing the indicated capital letters"""
+# Change colors by pressing the indicated capital letters
 onkey(lambda: color('black'), 'K')
 onkey(lambda: color('white'), 'W')
 onkey(lambda: color('green'), 'G')
@@ -110,7 +112,7 @@ onkey(lambda: color('blue'), 'B')
 onkey(lambda: color('red'), 'R')
 onkey(lambda: color('pink'), 'P') # New color pink
 
-"""Select different drawing modes by pressing the indicated letters"""
+# Select different drawing modes by pressing the indicated letters
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')
 onkey(lambda: store('shape', circle), 'c')

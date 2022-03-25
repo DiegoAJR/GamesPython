@@ -63,7 +63,7 @@ def square(x, y):
     path.down()
     path.begin_fill()
 
-    # For loop that draws the 4 lines
+    # For loop that draws the 4 lines of the square
     for count in range(4):
         path.forward(20)
         path.left(90)
@@ -116,27 +116,29 @@ def world():
 
 def move():
     """Move pacman and all ghosts."""
+
+    # Score writer
     writer.undo()
     writer.write(state['score'])
 
     clear()
 
-    # Checks if pacman can move to where he is aiming. If he can, he moves
+    # Checks if pacman can move to where he's aiming. If he can, he moves
     if valid(pacman + aim):
         pacman.move(aim)
 
     index = offset(pacman)
 
     if tiles[index] == 1:
-        tiles[index] = 2
-        state['score'] += 1
+        tiles[index] = 2 # Removes the indicator of white ball
+        state['score'] += 1 # Adds to your score when you eat a white ball
         x = (index % 20) * 20 - 200
         y = 180 - (index // 20) * 20
-        square(x, y)
+        square(x, y) # Draws the new square
 
     up()
     goto(pacman.x + 10, pacman.y + 10)
-    dot(20, 'yellow')
+    dot(20, 'yellow') # Draw pacman in its new position
 
     for point, course in ghosts: # Movement for every ghost
         #Check position of pacman and valid movements to get closer

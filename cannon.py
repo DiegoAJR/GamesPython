@@ -1,7 +1,7 @@
 """Cannon Game
 
-Python file to play the hitting targets with projectiles. Use the mouse pointer to throw a ball
-To hit the blue balls
+Python file to play a game where the objective is hitting targets with projectiles. Use the mouse pointer to throw a ball
+to hit the blue balls
 
 Modified by: 
 Diego Alejandro Juárez Ruiz
@@ -21,16 +21,16 @@ speedProjectile = 250 #Speed of the projectile
 
 
 def tap(x, y):
-    """Funciton that will throw the projectile if the ball is not on screen"""
-    if not inside(ball): #If the ball is not in screen
+    """Function that will throw the projectile if the ball is not on screen when there is a click"""
+    if not inside(ball): # If the ball is not in screen
         ball.x = -199
         ball.y = -199
-        speed.x = (x + speedProjectile) / 25 #Move projectile
+        speed.x = (x + speedProjectile) / 25 # Move projectile
         speed.y = (y + speedProjectile) / 25
 
 
 def inside(xy):
-    """Return True if coordinates are inside of the game boundries"""
+    """Return True if coordinates are inside of the game boundaries"""
     return -200 < xy.x < 200 and -200 < xy.y < 200
 
 
@@ -42,7 +42,7 @@ def draw():
         goto(target.x, target.y)
         dot(20, 'blue')
 
-    if inside(ball): # if the projectile is inside of the boundries, draw it as a red ball
+    if inside(ball): # If the projectile is inside of the boundries, draw it as a red ball
         goto(ball.x, ball.y)
         dot(6, 'red')
 
@@ -50,7 +50,7 @@ def draw():
 
 
 def move():
-    """Funciton that moves all the targets and projectile every frame"""
+    """Function that moves all the targets and the projectile every frame"""
     if randrange(40) == 0: # Add randomly a target
         y = randrange(-150, 150) # Random position in y
         target = vector(200, y) 
@@ -86,10 +86,10 @@ def move():
     ontimer(move, 20)
 
 
-setup(420, 420, 370, 0) # open window game
+setup(420, 420, 370, 0) # Open window game
 hideturtle()
 up()
 tracer(False)
-onscreenclick(tap) #User tap
+onscreenclick(tap) # User click
 move()
 done()
